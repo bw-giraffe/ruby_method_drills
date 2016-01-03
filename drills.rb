@@ -3,22 +3,55 @@
 #########################
 #say_hello
   # returns 'hello'
+def say_hello
+  return 'hello'
+end
 
 #echo
   # returns the input string
+def echo(stringy)
+    return stringy
+end
 
 #eddie_izzards_height
   # calculates Eddie Izzards height (67in)
   # and takes into account the height of his heel (default: 0in)
+def eddie_izzards_height(heel_height = 0)
+  standard_height = 67
+  if(heel_height <= 0)
+    return standard_height
+  else 
+    return heel_height + standard_height
+  end
+end
 
 #how_many_args
   # accepts any number of arguments without complaint
   # returns the total number of arguments passed to the function
+def how_many_args(*arguments)
+  return arguments.size
+end
 
 #find_answer
   # returns the value associated with the 'answer' keyword argument
   # returns nil if it cannot find the 'answer' keyword argument
   # complains when given non-keyword arguments
+def find_answer(*keyword)
+  if(keyword.empty?)
+      return nil
+  end
+  keyword.each do | i |
+     if(i.is_a?(Hash) == false)
+         raise ArgumentError, "incorrect input"
+    end
+  end
+  keyword[0].each do |mykey, val|
+    if(mykey == :answer)
+       return val
+    end
+  end    
+return nil
+end
 
 ##############################
 #### MANIPULATING STRINGS ####
