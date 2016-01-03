@@ -59,20 +59,47 @@ end
 #first_char
   # returns the first letter of the word
   # lowercases the first letter of the word
+def first_char(word)
+  first_letter = word.each_char.first
+  return first_letter.downcase
+end
 
 #polly_wanna
   # echoes the original word
   # repeats the original word 3 times
+def polly_wanna(word, repeat = 1)
+  sequence = ""
+  if(repeat > 1)
+    for i in 0..repeat
+      sequence<<word<<" "
+    end
+      return sequence
+  else
+    return word
+  end
+end
+#YOU CAN ONLY RETURN ONE THING AT A TIME!
 
 #count_chars
   # returns the number of characters in a string
+def count_chars(word)
+    return word.size
+end
 
 #yell
   # convert the message to uppercase
   # adds an exclamation point to the end of the message
+def yell(message)
+  return message.upcase<<"!"
+end
 
 #to_telegram
   # replaces periods with ' STOP'
+def to_telegram(stringy)
+ stringy.gsub!(".", " STOP")
+ return stringy
+end
+
 
 #spell_out
   # returns the input string, with characters seperated by dashes
