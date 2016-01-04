@@ -210,25 +210,68 @@ end
 ###########################
 #count_spaces
   # counts the spaces in a string
+def count_spaces(string)
+  return string.scan(" ").length
+end
 
 #string_lengths
   # converts a list of strings to a list of string lengths
+def string_lengths(strings)
+  array = []
+  strings.each do | a |
+    array.push(a.length)
+  end
+return array
+end
 
 #remove_falsy_values
   # filters out falsy values from a list
+def remove_falsy_values(values)
+  return values.delete_if {| val | val == false || val == nil}
+end
 
 #exclude_last
   # removes the last item from an array
   # removes the last item from a string
+def exclude_last(items)
+  if(items.class == String)
+    string_things = items.split("")
+    string_things.pop
+    return string_things.join
+  end
+  items.pop
+  return items
+end
 
 #exclude_first
   # removes the first item from an array
   # removes the first character from a string
   # does not alter the original input (non-destructive)
+def exclude_first(items)
+  if(items.class == String)
+    string_things = items.split("")
+    string_things.shift
+    return string_things.join
+  end
+  items.shift
+  return items
+end
+
 
 #exclude_ends
   # removes the first and last items from an array
   # removes the first and last characters from a string
+def exclude_ends(items)
+  if(items.class == String)
+    string_things = items.split("")
+    string_things.pop
+    string_things.shift
+    return string_things.join
+  end
+  items.pop
+  items.shift
+  return items
+end
 
 #select_every_even
   # returns a list of even-indexed items
