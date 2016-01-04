@@ -104,35 +104,106 @@ end
 #spell_out
   # returns the input string, with characters seperated by dashes
   # converts the string to lowercase
+def spell_out(word)
+  if(word.length > 1)
+    letters = word.split("")
+    for i in 0..(letters.length-2)
+        letters[i]<<"-"
+    end
+    return letters.join.downcase
+  end
+return word
+end
 
 #seperate
   # seperates characters with a custom seperator, when supplied with one
   # seperates characters with dashes (by default)
+def seperate(word, separator = "-")
+  if(word.length > 1)
+    letters = word.split("")
+    for i in 0..(letters.length-2)
+        letters[i]<<separator
+    end
+    return letters.join.downcase
+  end
+return word
+end
+
 
 #croon
   # seperates word characters with dashes
   # preserves whitespace between words
+def croon(words)
+  letters = words.split("")
+  if(letters.length > 1)
+    for i in 0..(letters.length-2)
+      if(letters[i] != " " && letters[i + 1] != " ")
+        letters[i]<<"-"
+        puts letters[i]
+      end
+    end
+    return letters.join("")
+  end
+  return words
+end
 
 #palindrome_word?
   # determines whether a single word is a palindrome
   # ignores case
+def palindrome_word?(word)
+  if(word.downcase == word.reverse.downcase)
+    return true
+  else
+    return false
+  end
+end
 
 #palindrome_sentence?
   # determines whether a sentence is a palindrome
   # ignores case
   # ignores whitespace
   # ignores punctuation
+def palindrome_sentence?(sentence)
+  split_sentence = sentence.gsub(/[!,:;.?]/, "").split(" ").join
+  if(split_sentence.downcase == split_sentence.downcase.reverse)
+    return true
+  else
+    return false
+  end
+end
+
 
 #is_vowel
   # determines whether a given character is a vowel
   # ignores case
   # handles weird inputs gracefully
+def is_vowel(string)
+  if(string.class != String)
+      raise ArgumentError, "incorrect input"
+  end
+  string = string.downcase.split("")
+    for i in 0..string.length-1
+      if(string[i] == "a" || string[i] == "e" || string[i] == "i" || string[i] == "u" || string[i] == "o")
+        return true
+      end
+    end
+ return false
+end
+
 
 #add_period
   # adds a period to the end of the sentence
   # does not add a period if one is already there
   # does not add a period if any form of terminal punctuation is present
-
+def add_period(sentence)
+    store_sent = sentence.split("")
+    last_char = store_sent[-1]
+    if(last_char =~ /[.!?]/)
+        return sentence
+    else
+        return sentence<<"."
+    end
+end
 
 ###########################
 #### LOOPS & ITERATORS ####
