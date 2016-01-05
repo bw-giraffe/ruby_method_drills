@@ -275,13 +275,40 @@ end
 
 #select_every_even
   # returns a list of even-indexed items
+def select_every_even(array)
+    storage = []
+    for i in 0..array.length-1
+        if(i % 2 == 0)
+            storage.push(array[i])
+        end
+    end
+    return storage
+end
 
 #select_every_odd
   # returns a list of odd-indexed items
+def select_every_odd(array)
+    storage = []
+    for i in 0..array.length-1
+        if(i % 2 != 0)
+            storage.push(array[i])
+        end
+    end
+    return storage
+end
 
 #select_every_n
   # returns a list of items at an index evenly divisible by n
   # defaults to an n value of 1
+def select_every_n(array, n=1)
+    storage = []
+    for i in 0..array.length-1
+        if(i % n == 0)
+            storage.push(array[i])
+        end
+    end
+    return storage
+end
 
 #compile_agenda
   # converts a list of agenda items into a single string
@@ -289,6 +316,25 @@ end
   # sorts items by priority ascending (low to high) by default
   # sort order can (optionally) be changed to priority descending
   # the bullet can (optionally) be changed to any symbol
+def compile_agenda(list, order = "DES", bullet="*")
+    return_list = ""
+    if(order == "ASC")
+        list.sort_by!{| x | x[:priority]}
+        list.reverse!
+    elsif(order == "DES")
+        list.sort_by!{| x | x[:priority]}
+    end
+
+    if(list.size > 1)
+        for i in 0..list.length-1
+            return_list<<"#{bullet} "<<list[i][:title]<<"\n"
+        end
+    else
+        return "#{bullet} "<<list[0][:title]
+    end
+    return return_list.rstrip
+end
+
 
 ##############################
 #### MANIPULATING NUMBERS ####
