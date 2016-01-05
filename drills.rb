@@ -342,6 +342,24 @@ end
 #count_to
   # returns an array containing every integer from 0 to n
   # rounds off decimals
+def count_to(n)
+  array = []
+  if(n.class == Float) 
+      n.round
+  end
+  
+  if(n >= 0 == false)
+    for i in (0).downto(n)
+        array.push(i)
+    end
+  else
+    for i in 0..n
+        array.push(i)
+    end
+  end
+
+  return array
+end
 
 #is_integer?
   # returns true for Fixnums and Bignums (whole number or 'integer' types)
